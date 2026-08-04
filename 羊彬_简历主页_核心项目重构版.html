@@ -146,20 +146,78 @@
     }
     .section-note { font-size: 12px; color: var(--muted); }
 
-    .project-list { display: grid; gap: 15px; }
-    .project-card { padding: 23px; position: relative; }
-    .project-top { display: flex; justify-content: space-between; gap: 18px; align-items: flex-start; }
-    .project-name { display: flex; align-items: center; gap: 10px; font-size: 18px; font-weight: 800; }
-    .project-index {
-      width: 32px; height: 32px; display: inline-grid; place-items: center;
-      border-radius: 10px; background: var(--primary-soft); color: var(--primary); font-size: 12px;
+    .project-list { display: grid; gap: 18px; }
+    .project-card { position: relative; }
+    .project-hero {
+      padding: 26px;
+      color: #fff;
+      background:
+        radial-gradient(circle at 92% 0%, rgba(255,255,255,.16), transparent 30%),
+        linear-gradient(135deg, #0f2b55 0%, #155eef 58%, #3b82f6 100%);
     }
-    .project-role { font-size: 12px; color: var(--success); background: #ecfdf5; border: 1px solid #d1fae5; padding: 5px 10px; border-radius: 999px; white-space: nowrap; }
-    .project-summary { margin-top: 14px; color: #475569; font-size: 14px; }
-    .achievement-list { display: grid; gap: 8px; margin: 15px 0 0 18px; color: #27364b; font-size: 13px; }
-    .achievement-list li::marker { color: var(--primary); }
-    .tech-stack { display: flex; gap: 8px; flex-wrap: wrap; margin-top: 16px; }
-    .tag { font-size: 12px; padding: 5px 10px; border-radius: 8px; color: #345075; background: #f1f5f9; border: 1px solid #e2e8f0; }
+    .project-top { display: flex; justify-content: space-between; gap: 18px; align-items: flex-start; }
+    .project-kicker { font-size: 12px; opacity: .74; letter-spacing: .08em; text-transform: uppercase; }
+    .project-name { margin-top: 7px; font-size: clamp(21px, 4vw, 30px); line-height: 1.28; font-weight: 900; max-width: 720px; }
+    .project-role { font-size: 12px; font-weight: 800; color: #0b6b4d; background: #ecfdf5; border: 1px solid #bbf7d0; padding: 7px 12px; border-radius: 999px; white-space: nowrap; }
+    .project-summary { margin-top: 16px; max-width: 820px; color: rgba(255,255,255,.84); font-size: 14px; }
+    .project-meta { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 18px; }
+    .project-meta span { font-size: 12px; padding: 6px 10px; border-radius: 999px; background: rgba(255,255,255,.12); border: 1px solid rgba(255,255,255,.16); }
+    /* 折叠面板 */
+    .collapsible .collapse-trigger {
+      cursor: pointer; user-select: none;
+      display: flex; align-items: center; gap: 8px;
+    }
+    .collapse-trigger .arrow {
+      width: 20px; height: 20px; flex-shrink: 0;
+      transition: transform 0.25s ease;
+      opacity: 0.4;
+    }
+    .collapsible.open .collapse-trigger .arrow { transform: rotate(90deg); opacity: 0.7; }
+    .collapse-body {
+      max-height: 0; overflow: hidden;
+      transition: max-height 0.4s ease, margin-top 0.4s ease;
+      margin-top: 0;
+    }
+    .collapsible.open .collapse-body { max-height: 2500px; margin-top: 0; }
+
+    .project-body { padding: 28px 26px; }
+    .project-section { margin-bottom: 24px; }
+    .project-section:last-child { margin-bottom: 0; }
+    .project-section h3 {
+      font-size: 14px; font-weight: 700; color: var(--muted);
+      text-transform: uppercase; letter-spacing: .06em;
+      margin-bottom: 12px;
+      display: flex; align-items: center; gap: 8px;
+    }
+    .project-section h3::after {
+      content: ""; flex: 1; height: 1px;
+      background: var(--line); margin-top: 1px;
+    }
+    /* 职责双列 */
+    .duty-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 8px 24px; }
+    .duty-item { font-size: 13px; color: #334155; line-height: 1.7; padding-left: 16px; position: relative; }
+    .duty-item::before {
+      content: ""; position: absolute; left: 0; top: 9px;
+      width: 6px; height: 6px; border-radius: 50%;
+      background: var(--primary); opacity: 0.45;
+    }
+    /* 指标卡片 */
+    .metric-row { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+    .metric-card {
+      text-align: center; padding: 20px 16px; border-radius: 16px;
+      background: linear-gradient(135deg, #f0f7ff 0%, #e8f2fe 100%);
+      border: 1px solid #d0e2f7;
+    }
+    .metric-card .metric-value { font-size: 28px; font-weight: 900; color: var(--primary-2); line-height: 1.2; }
+    .metric-card .metric-label { margin-top: 4px; font-size: 12px; color: var(--muted); }
+    /* 亮点 */
+    .highlight-grid { display: grid; grid-template-columns: repeat(2, minmax(0,1fr)); gap: 10px; }
+    .highlight-item { padding: 16px; border-radius: 14px; background: var(--primary-soft); border: 1px solid #dbeafe; }
+    .highlight-item strong { display: block; font-size: 13px; color: var(--primary-2); }
+    .highlight-item span { display: block; margin-top: 6px; font-size: 12px; color: #52637b; line-height: 1.6; }
+    /* 技术栈 */
+    .tech-stack { display: flex; gap: 8px; flex-wrap: wrap; }
+    .tag { font-size: 12px; padding: 6px 12px; border-radius: 8px; color: #345075; background: #f1f5f9; border: 1px solid #e2e8f0; font-weight: 500; }
 
     .two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; }
     .info-card { padding: 22px; }
@@ -234,6 +292,8 @@
       .top-summary, .two-col { grid-template-columns: 1fr; }
       .cert-grid, .skills { grid-template-columns: 1fr; }
       .project-top { flex-direction: column; gap: 10px; }
+      .duty-grid { grid-template-columns: 1fr; }
+      .highlight-grid { grid-template-columns: 1fr; }
       .cta { align-items: flex-start; flex-direction: column; }
     }
 
@@ -258,9 +318,9 @@
         <div class="headline">硬件工程师 / 嵌入式开发方向</div>
         <p class="value">电子信息工程专业背景，聚焦嵌入式系统、硬件电路设计与调试，具备从原理图设计、器件选型、PCB 设计到软件联调的项目实践能力。</p>
         <div class="contact-row">
-          <a class="contact-item" href="mailto:2400042027@mails.szu.edu">
+          <a class="contact-item" href="/cdn-cgi/l/email-protection#e3d1d7d3d3d3d7d1d3d1d4a38e828a8f90cd909996cd868796">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
-            2400042027@mails.szu.edu
+            <span class="__cf_email__" data-cfemail="390b0d0909090d0b090b0e79545850554a174a434c175c5d4c">[email&#160;protected]</span>
           </a>
           <a class="contact-item" href="tel:19907660401">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="5" y="2" width="14" height="20" rx="2"/><line x1="12" y1="18" x2="12" y2="18.01"/></svg>
@@ -291,39 +351,74 @@
     <section class="section">
       <div class="section-head">
         <div class="section-title">核心项目</div>
-        <div class="section-note">建议保留 2–3 个最匹配岗位的项目</div>
+        <div class="section-note">科研竞赛项目 · 硬件 / 嵌入式 / BMS</div>
       </div>
-      <div class="project-list">
-        <article class="card project-card">
-          <div class="project-top">
-            <div class="project-name"><span class="project-index">01</span> 请填写项目名称</div>
-            <div class="project-role">负责人 / 硬件设计</div>
-          </div>
-          <p class="project-summary">一句话说明项目目标、应用场景及你负责的核心模块，例如：设计并实现一套基于 STM32 的多路传感采集与显示系统。</p>
-          <ul class="achievement-list">
-            <li>负责：原理图设计、器件选型、PCB 布局布线、焊接调试或嵌入式程序开发。</li>
-            <li>难点：说明你解决的具体问题，例如电源纹波、通信异常、采样误差或 EMC 干扰。</li>
-            <li>成果：补充可量化结果，例如误差、响应时间、稳定运行时长、成本或板卡尺寸。</li>
-          </ul>
-          <div class="tech-stack">
-            <span class="tag">STM32 / MCU</span><span class="tag">Altium Designer</span><span class="tag">Keil</span><span class="tag">示波器 / 万用表</span>
-          </div>
-        </article>
 
-        <article class="card project-card">
-          <div class="project-top">
-            <div class="project-name"><span class="project-index">02</span> 请填写项目名称</div>
-            <div class="project-role">个人项目 / 核心成员</div>
+      <div class="project-list">
+        <article class="card project-card collapsible">
+          <div class="project-hero">
+            <div class="project-top">
+              <div>
+                <div class="project-kicker">GRADUATE ELECTRONIC DESIGN COMPETITION</div>
+                <div class="project-name">基于 GD32G553 与 GD30BM2016 的双重冗余防护型主动均衡 BMS</div>
+              </div>
+              <div class="project-role">独立完成</div>
+            </div>
+
+            <p class="project-summary">面向储能及动力电池应用，设计并实现一套主动均衡电池管理系统，完成电池电压、电流与温度采集、SOC 在线估算、主动均衡、三阶段充电管理、双重冗余保护及 Qt 上位机监控，并完成样机联调与测试验证。</p>
+
+            <div class="project-meta">
+              <span>第二十一届中国研究生电子设计竞赛</span>
+              <span>2024.09—2026.06</span>
+              <span>深圳大学</span>
+              <span>储能 BMS / 主动均衡</span>
+            </div>
+
+            <div class="collapse-trigger" onclick="toggleCollapse(this)" style="margin-top:16px;display:flex;align-items:center;gap:8px;font-size:12px;opacity:.72;color:#fff;justify-content:center;padding:6px 0;border-top:1px solid rgba(255,255,255,.12);">
+              <svg class="arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width:16px;height:16px;"><polyline points="9 18 15 12 9 6"/></svg>
+              <span>展开详情</span>
+            </div>
           </div>
-          <p class="project-summary">建议优先展示电源、控制、通信、采集、驱动或上位机相关项目。</p>
-          <ul class="achievement-list">
-            <li>说明项目背景与需求，而不是只写"完成了某系统"。</li>
-            <li>突出你的个人贡献，区分团队成果和本人工作。</li>
-            <li>附上项目图片、原理图局部、PCB 实物或演示链接，会更有说服力。</li>
-          </ul>
-          <div class="tech-stack">
-            <span class="tag">Qt</span><span class="tag">PLECS</span><span class="tag">Mathcad</span><span class="tag">软硬件联调</span>
+
+          <div class="collapse-body">
+            <div class="project-body">
+
+            <div class="project-section">
+              <h3>个人职责</h3>
+              <div class="duty-grid">
+                <div class="duty-item">完成系统总体方案与硬件架构设计，搭建主控、模拟前端采集、主动均衡、充放电控制及二次熔断保护模块。</div>
+                <div class="duty-item">完成原理图设计、器件选型、PCB Layout、板级焊接调试及软硬件联调。</div>
+                <div class="duty-item">基于 GD32G553 开发底层驱动，并完成 GD30BM2016 电压、电流、温度采集与数据处理。</div>
+                <div class="duty-item">开展 HPPC 与充放电实验，整理测试数据及技术文档，完成竞赛论文撰写。</div>
+              </div>
+            </div>
+
+            <div class="project-section">
+              <h3>关键技术指标</h3>
+              <div class="metric-row">
+                <div class="metric-card">
+                  <div class="metric-value">≤ 5 mV</div>
+                  <div class="metric-label">均衡后最大压差</div>
+                </div>
+                <div class="metric-card">
+                  <div class="metric-value">&lt; 3%</div>
+                  <div class="metric-label">SOC 估算误差</div>
+                </div>
+              </div>
+            </div>
+
+            <div class="project-section">
+              <h3>技术亮点</h3>
+              <div class="highlight-grid">
+                <div class="highlight-item"><strong>主动均衡</strong><span>共享磁芯多绕组推挽拓扑，实现单体间双向能量转移。</span></div>
+                <div class="highlight-item"><strong>高精度 SOC</strong><span>基于二阶 RC 模型与 EKF，实现动态工况在线估算。</span></div>
+                <div class="highlight-item"><strong>双重冗余保护</strong><span>AFE 硬件保护与二次保险丝协同防护。</span></div>
+                <div class="highlight-item"><strong>上位机监控</strong><span>基于 Qt5 实现蓝牙通信、实时显示、报警与参数配置。</span></div>
+              </div>
+            </div>
+
           </div>
+          </div><!-- /.collapse-body -->
         </article>
       </div>
     </section>
@@ -434,7 +529,7 @@
 
     <section class="cta">
       <div><h2>期待参与硬件设计与嵌入式研发工作</h2><p>可进一步补充完整 PDF 简历、项目仓库、作品演示视频或技术博客链接。</p></div>
-      <a class="cta-button" href="mailto:2400042027@mails.szu.edu">联系我</a>
+      <a class="cta-button" href="/cdn-cgi/l/email-protection#3200060202020600020005725f535b5e411c4148471c575647">联系我</a>
     </section>
   </main>
 
@@ -445,7 +540,7 @@
     <img id="lightboxImage" src="" alt="证书大图" onclick="event.stopPropagation()" />
   </div>
 
-  <script>
+  <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
     function openLightbox(src) {
       const box = document.getElementById('lightbox');
       document.getElementById('lightboxImage').src = src;
@@ -461,7 +556,13 @@
     function toggleCollapse(trigger) {
       const item = trigger.closest('.collapsible');
       item.classList.toggle('open');
+      const label = trigger.querySelector('span');
+      if (label) {
+        label.textContent = item.classList.contains('open') ? '收起详情' : '展开详情';
+      }
     }
   </script>
+<script type="module" src="https://static.cloudflareinsights.com/beacon.min.js/v4513226cdae34746b4dedf0b4dfa099e1781791509496" integrity="sha512-ZE9pZaUXND66v380QUtch/5sE9tPFh2zg45pR2PB0CVkCtOREv2AJKkSidISWkysEuQ0EH8faUU5du78bx87UQ==" data-cf-beacon='{"version":"2024.11.0","token":"7939e04a4baf43c8b86a560f74aac60e"}' crossorigin="anonymous"></script>
+<script type="module" src="https://static.cloudflareinsights.com/beacon.min.js/v4513226cdae34746b4dedf0b4dfa099e1781791509496" integrity="sha512-ZE9pZaUXND66v380QUtch/5sE9tPFh2zg45pR2PB0CVkCtOREv2AJKkSidISWkysEuQ0EH8faUU5du78bx87UQ==" data-cf-beacon='{"version":"2024.11.0","token":"ef15170b43be4961b5da436d84f5d8a6"}' crossorigin="anonymous"></script>
 </body>
 </html>

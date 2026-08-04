@@ -169,27 +169,6 @@
     .timeline-date { font-size: 12px; color: var(--muted); white-space: nowrap; }
     .timeline-sub { font-size: 13px; color: var(--primary-2); margin-top: 3px; }
     .timeline-desc { margin-top: 8px; font-size: 13px; color: var(--muted); }
-    .desc-list { display: grid; gap: 6px; margin: 0; padding-left: 18px; color: #27364b; font-size: 13px; }
-    .desc-list li { line-height: 1.7; padding-left: 4px; }
-    .desc-list li::marker { color: var(--primary); }
-
-    /* 折叠面板 */
-    .collapsible .collapse-trigger {
-      cursor: pointer; user-select: none;
-      display: flex; align-items: center; gap: 8px;
-    }
-    .collapse-trigger .arrow {
-      width: 20px; height: 20px; flex-shrink: 0;
-      transition: transform 0.25s ease;
-      opacity: 0.4;
-    }
-    .collapsible.open .collapse-trigger .arrow { transform: rotate(90deg); opacity: 0.7; }
-    .collapse-body {
-      max-height: 0; overflow: hidden;
-      transition: max-height 0.35s ease, margin-top 0.35s ease;
-      margin-top: 0;
-    }
-    .collapsible.open .collapse-body { max-height: 600px; margin-top: 8px; }
 
     .skills { display: grid; grid-template-columns: repeat(2, minmax(0,1fr)); gap: 14px; }
     .skill-group { padding: 18px; border: 1px solid var(--line); background: #fff; border-radius: 15px; }
@@ -258,9 +237,9 @@
         <div class="headline">硬件工程师 / 嵌入式开发方向</div>
         <p class="value">电子信息工程专业背景，聚焦嵌入式系统、硬件电路设计与调试，具备从原理图设计、器件选型、PCB 设计到软件联调的项目实践能力。</p>
         <div class="contact-row">
-          <a class="contact-item" href="mailto:2400042027@mails.szu.edu">
+          <a class="contact-item" href="/cdn-cgi/l/email-protection#4a787e7a7a7a7e787a787d0a272b2326396439303f642f2e3f">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
-            2400042027@mails.szu.edu
+            <span class="__cf_email__" data-cfemail="f4c6c0c4c4c4c0c6c4c6c3b499959d9887da878e81da919081">[email&#160;protected]</span>
           </a>
           <a class="contact-item" href="tel:19907660401">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="5" y="2" width="14" height="20" rx="2"/><line x1="12" y1="18" x2="12" y2="18.01"/></svg>
@@ -284,7 +263,7 @@
       <aside class="card target-card">
         <div class="label">求职意向</div>
         <div class="role">硬件工程师 / 嵌入式工程师</div>
-        <div class="meta">工作地点：待补充　｜　到岗时间：2027年6月</div>
+        <div class="meta">工作地点：待补充　｜　到岗时间：待补充</div>
       </aside>
     </section>
 
@@ -306,7 +285,7 @@
             <li>成果：补充可量化结果，例如误差、响应时间、稳定运行时长、成本或板卡尺寸。</li>
           </ul>
           <div class="tech-stack">
-            <span class="tag">STM32 / MCU</span><span class="tag">Altium Designer</span><span class="tag">Keil</span><span class="tag">示波器 / 万用表</span>
+            <span class="tag">STM32 / MCU（待确认）</span><span class="tag">Altium Designer</span><span class="tag">Keil</span><span class="tag">示波器 / 万用表</span>
           </div>
         </article>
 
@@ -315,9 +294,9 @@
             <div class="project-name"><span class="project-index">02</span> 请填写项目名称</div>
             <div class="project-role">个人项目 / 核心成员</div>
           </div>
-          <p class="project-summary">建议优先展示电源、控制、通信、采集、驱动或上位机相关项目。</p>
+          <p class="project-summary">建议优先展示电源、控制、通信、采集、驱动或上位机相关项目，避免使用与硬件岗位无关的 React、Node.js 等模板技术栈。</p>
           <ul class="achievement-list">
-            <li>说明项目背景与需求，而不是只写"完成了某系统"。</li>
+            <li>说明项目背景与需求，而不是只写“完成了某系统”。</li>
             <li>突出你的个人贡献，区分团队成果和本人工作。</li>
             <li>附上项目图片、原理图局部、PCB 实物或演示链接，会更有说服力。</li>
           </ul>
@@ -332,80 +311,31 @@
       <div>
         <div class="section-head"><div class="section-title">教育经历</div></div>
         <article class="card info-card">
-          <div class="timeline-item collapsible">
-            <div class="timeline-top collapse-trigger" onclick="toggleCollapse(this)">
-              <svg class="arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 18 15 12 9 6"/></svg>
-              <div class="timeline-title">深圳大学</div>
-              <div class="timeline-date">2024.09 – 2027.06</div>
-            </div>
-            <div class="timeline-sub">电子信息工程 · 硕士研究生 · GPA 85.9</div>
-            <div class="collapse-body">
-              <div class="timeline-desc">研究方向：<strong>电池管理系统 · 电池均衡 · SOC估算</strong><br>
-              主修课程：最优化理论与应用、通信网理论、计算机视觉、信息论、雷达信号处理、矩阵理论与方法、随机过程、人工智能原理、数字声音处理、机器学习。
-              </div>
-            </div>
-          </div>
-          <div class="timeline-item collapsible">
-            <div class="timeline-top collapse-trigger" onclick="toggleCollapse(this)">
-              <svg class="arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 18 15 12 9 6"/></svg>
-              <div class="timeline-title">桂林电子科技大学</div>
-              <div class="timeline-date">2020.09 – 2024.06</div>
-            </div>
-            <div class="timeline-sub">电子信息工程 · 本科 · GPA 85.7 · 排名前2%</div>
-            <div class="collapse-body">
-              <div class="timeline-desc">
-                <strong style="color:var(--success);">🏅 推免生</strong> — 专业前2%成绩获推免，保送深圳大学攻读硕士。<br>
-                主修课程：电路分析基础、模拟电子技术、数字逻辑、通信电子电路、信号与系统分析、数字信号处理、电磁场、微波技术与天线、微机原理与接口技术、卫星导航原理、惯性导航原理、GNSS接收机原理。
-              </div>
-            </div>
+          <div class="timeline-item">
+            <div class="timeline-top"><div class="timeline-title">深圳大学（请确认）</div><div class="timeline-date">起止时间待补充</div></div>
+            <div class="timeline-sub">电子信息工程｜学历待补充</div>
+            <div class="timeline-desc">建议补充：GPA / 排名（较好时填写）、核心课程、实验室或研究方向。</div>
           </div>
         </article>
       </div>
       <div>
         <div class="section-head"><div class="section-title">实践 / 实习经历</div></div>
         <article class="card info-card">
-          <div class="timeline-item collapsible">
-            <div class="timeline-top collapse-trigger" onclick="toggleCollapse(this)">
-              <svg class="arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 18 15 12 9 6"/></svg>
-              <div class="timeline-title">深圳大学智能物联网实验室</div>
-              <div class="timeline-date">2024.09 – 至今</div>
-            </div>
-            <div class="timeline-sub">研究方向：电池管理系统（BMS） · 指导教师：张力</div>
-            <div class="collapse-body">
-              <ul class="desc-list">
-                <li>参与BMS硬件平台开发，协助硬件模块搭建、调试与功能验证。</li>
-                <li>开展电池充放电实验，采集并分析电压、电流、温度等关键数据。</li>
-                <li>参与STM32底层驱动开发，实现数据采集、串口通信等基础功能。</li>
-                <li>整理实验数据与技术文档，支撑项目调试与阶段总结。</li>
-              </ul>
-            </div>
-          </div>
-          <div class="timeline-item collapsible">
-            <div class="timeline-top collapse-trigger" onclick="toggleCollapse(this)">
-              <svg class="arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 18 15 12 9 6"/></svg>
-              <div class="timeline-title">通信实验室管理员</div>
-              <div class="timeline-date">2025.09 – 至今</div>
-            </div>
-            <div class="timeline-sub">电子技术实验教学中心 · 指导教师：李晓滨</div>
-            <div class="collapse-body">
-              <ul class="desc-list">
-                <li>负责实验室日常管理及值班，保障实验教学与实践顺利开展。</li>
-                <li>负责计算机设备巡检、软件维护及故障处理，确保实验环境稳定。</li>
-                <li>协助实验课程准备，包括环境配置、设备检查及资料整理。</li>
-                <li>管理设备借用登记与资产台账，提供师生日常技术支持。</li>
-              </ul>
-            </div>
+          <div class="timeline-item">
+            <div class="timeline-top"><div class="timeline-title">暂无具体信息</div><div class="timeline-date">待补充</div></div>
+            <div class="timeline-sub">公司 / 实验室 / 学生团队</div>
+            <div class="timeline-desc">可填写实习、实验室、竞赛团队、课程设计负责人或技术社团经历。</div>
           </div>
         </article>
       </div>
     </section>
 
     <section class="section">
-      <div class="section-head"><div class="section-title">专业技能</div><div class="section-note">按"能力"分类比单纯罗列软件更专业</div></div>
+      <div class="section-head"><div class="section-title">专业技能</div><div class="section-note">按“能力”分类比单纯罗列软件更专业</div></div>
       <article class="card info-card">
         <div class="skills">
           <div class="skill-group"><h3>硬件设计</h3><div class="skill-tags"><span class="tag">模电 / 数电</span><span class="tag">原理图设计</span><span class="tag">PCB 设计</span><span class="tag">器件选型</span></div></div>
-          <div class="skill-group"><h3>嵌入式与软件</h3><div class="skill-tags"><span class="tag">Keil</span><span class="tag">Qt</span><span class="tag">C / C++</span><span class="tag">VS Code</span></div></div>
+          <div class="skill-group"><h3>嵌入式与软件</h3><div class="skill-tags"><span class="tag">Keil</span><span class="tag">Qt</span><span class="tag">C / C++（请确认）</span><span class="tag">VS Code</span></div></div>
           <div class="skill-group"><h3>仿真与计算</h3><div class="skill-tags"><span class="tag">PLECS</span><span class="tag">Mathcad</span><span class="tag">电路仿真</span><span class="tag">数据分析</span></div></div>
           <div class="skill-group"><h3>工程效率工具</h3><div class="skill-tags"><span class="tag">Altium Designer</span><span class="tag">Claude Code</span><span class="tag">Codex</span><span class="tag">技术文档</span></div></div>
         </div>
@@ -422,8 +352,8 @@
             <div class="cert-meta"><span>2024 年（待确认）</span><span>获奖等级待补充</span><span>颁发单位待补充</span></div>
           </div>
         </article>
-        <article class="card cert-card" onclick="openLightbox('简历介绍图片/门型框图.jpg')">
-          <div class="cert-image" style="display:grid;place-items:center;color:#94a3b8;font-size:13px;">点击补充第二项荣誉或证书</div>
+        <article class="card cert-card">
+          <div class="cert-image" style="display:grid;place-items:center;color:#94a3b8;font-size:13px;">建议补充第二张高含金量证书或项目实物图</div>
           <div class="cert-body">
             <div class="cert-name">第二项荣誉 / 专业证书</div>
             <div class="cert-meta"><span>时间待补充</span><span>等级待补充</span></div>
@@ -434,7 +364,7 @@
 
     <section class="cta">
       <div><h2>期待参与硬件设计与嵌入式研发工作</h2><p>可进一步补充完整 PDF 简历、项目仓库、作品演示视频或技术博客链接。</p></div>
-      <a class="cta-button" href="mailto:2400042027@mails.szu.edu">联系我</a>
+      <a class="cta-button" href="/cdn-cgi/l/email-protection#83b1b7b3b3b3b7b1b3b1b4c3eee2eaeff0adf0f9f6ade6e7f6">联系我</a>
     </section>
   </main>
 
@@ -445,7 +375,7 @@
     <img id="lightboxImage" src="" alt="证书大图" onclick="event.stopPropagation()" />
   </div>
 
-  <script>
+  <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
     function openLightbox(src) {
       const box = document.getElementById('lightbox');
       document.getElementById('lightboxImage').src = src;
@@ -457,11 +387,8 @@
       document.body.style.overflow = '';
     }
     document.addEventListener('keydown', (e) => { if (e.key === 'Escape') closeLightbox(); });
-
-    function toggleCollapse(trigger) {
-      const item = trigger.closest('.collapsible');
-      item.classList.toggle('open');
-    }
   </script>
+<script type="module" src="https://static.cloudflareinsights.com/beacon.min.js/v4513226cdae34746b4dedf0b4dfa099e1781791509496" integrity="sha512-ZE9pZaUXND66v380QUtch/5sE9tPFh2zg45pR2PB0CVkCtOREv2AJKkSidISWkysEuQ0EH8faUU5du78bx87UQ==" data-cf-beacon='{"version":"2024.11.0","token":"7939e04a4baf43c8b86a560f74aac60e"}' crossorigin="anonymous"></script>
+<script type="module" src="https://static.cloudflareinsights.com/beacon.min.js/v4513226cdae34746b4dedf0b4dfa099e1781791509496" integrity="sha512-ZE9pZaUXND66v380QUtch/5sE9tPFh2zg45pR2PB0CVkCtOREv2AJKkSidISWkysEuQ0EH8faUU5du78bx87UQ==" data-cf-beacon='{"version":"2024.11.0","token":"ef15170b43be4961b5da436d84f5d8a6"}' crossorigin="anonymous"></script>
 </body>
 </html>
