@@ -1,0 +1,4 @@
+gen-qr.py
+qr-code.png
+*.pyc
+.DS_Store

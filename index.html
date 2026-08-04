@@ -1,0 +1,408 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>个人简历 - 荣誉与项目</title>
+    <style>
+        :root {
+            --bg: #f5f5f5;
+            --card-bg: #ffffff;
+            --text: #2c3e50;
+            --text-light: #666;
+            --accent: #1a5276;
+            --tag-bg: #eaf2f8;
+            --tag-text: #2980b9;
+            --shadow: 0 2px 12px rgba(0,0,0,0.08);
+            --radius: 12px;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", sans-serif;
+            background: var(--bg);
+            color: var(--text);
+            line-height: 1.6;
+            min-height: 100vh;
+        }
+
+        /* ====== 头部区域 ====== */
+        .hero {
+            background: linear-gradient(135deg, #1a5276 0%, #2c3e50 100%);
+            color: #fff;
+            text-align: center;
+            padding: 40px 20px 36px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::after {
+            content: '';
+            position: absolute;
+            bottom: -20px;
+            left: 0;
+            right: 0;
+            height: 40px;
+            background: var(--bg);
+            border-radius: 50% 50% 0 0;
+        }
+
+        .avatar {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            background: rgba(255,255,255,0.2);
+            margin: 0 auto 14px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 36px;
+        }
+
+        .hero h1 {
+            font-size: 26px;
+            font-weight: 700;
+            margin-bottom: 6px;
+            letter-spacing: 1px;
+        }
+
+        .hero .subtitle {
+            font-size: 14px;
+            opacity: 0.85;
+            letter-spacing: 0.5px;
+        }
+
+        .hero .tags {
+            margin-top: 14px;
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+
+        .hero .tag {
+            background: rgba(255,255,255,0.18);
+            border: 1px solid rgba(255,255,255,0.3);
+            padding: 4px 14px;
+            border-radius: 20px;
+            font-size: 12px;
+        }
+
+        /* ====== 内容区域 ====== */
+        .container {
+            max-width: 640px;
+            margin: 0 auto;
+            padding: 0 16px 40px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .section {
+            margin-top: 20px;
+        }
+
+        .section-title {
+            font-size: 18px;
+            font-weight: 700;
+            color: var(--accent);
+            margin-bottom: 14px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .section-title .icon {
+            font-size: 22px;
+        }
+
+        /* ====== 卡片 ====== */
+        .card {
+            background: var(--card-bg);
+            border-radius: var(--radius);
+            box-shadow: var(--shadow);
+            overflow: hidden;
+            margin-bottom: 14px;
+            transition: transform 0.2s;
+        }
+
+        .card:active {
+            transform: scale(0.985);
+        }
+
+        /* 证书卡片 */
+        .cert-card .cert-img {
+            width: 100%;
+            display: block;
+            cursor: pointer;
+            border-bottom: 1px solid #eee;
+        }
+
+        .cert-card .cert-info {
+            padding: 14px 16px;
+        }
+
+        .cert-card .cert-name {
+            font-size: 16px;
+            font-weight: 600;
+            color: var(--text);
+            margin-bottom: 4px;
+        }
+
+        .cert-card .cert-meta {
+            font-size: 13px;
+            color: var(--text-light);
+            display: flex;
+            gap: 16px;
+            flex-wrap: wrap;
+        }
+
+        .cert-card .cert-meta span {
+            display: flex;
+            align-items: center;
+            gap: 4px;
+        }
+
+        /* 项目卡片 */
+        .project-card .project-header {
+            padding: 16px 16px 0;
+        }
+
+        .project-card .project-name {
+            font-size: 16px;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .project-card .project-desc {
+            font-size: 14px;
+            color: var(--text-light);
+            margin-top: 6px;
+            line-height: 1.7;
+        }
+
+        .project-card .tech-stack {
+            padding: 10px 16px;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+
+        .project-card .tech-tag {
+            background: var(--tag-bg);
+            color: var(--tag-text);
+            font-size: 12px;
+            padding: 3px 12px;
+            border-radius: 14px;
+            font-weight: 500;
+        }
+
+        /* ====== 图片预览弹窗 ====== */
+        .lightbox {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.92);
+            z-index: 9999;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+        }
+
+        .lightbox.show {
+            display: flex;
+        }
+
+        .lightbox img {
+            max-width: 95%;
+            max-height: 85vh;
+            border-radius: 8px;
+            object-fit: contain;
+        }
+
+        .lightbox .close-btn {
+            position: absolute;
+            top: 16px;
+            right: 20px;
+            color: #fff;
+            font-size: 32px;
+            cursor: pointer;
+            width: 44px;
+            height: 44px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: rgba(255,255,255,0.15);
+            border-radius: 50%;
+            border: none;
+        }
+
+        .lightbox .hint {
+            color: rgba(255,255,255,0.6);
+            font-size: 12px;
+            margin-top: 12px;
+        }
+
+        /* ====== 底部 ====== */
+        .footer {
+            text-align: center;
+            padding: 24px 16px 32px;
+            color: #999;
+            font-size: 12px;
+        }
+
+        .footer a {
+            color: var(--tag-text);
+            text-decoration: none;
+        }
+
+        /* ====== 响应式微调 ====== */
+        @media (min-width: 768px) {
+            .container {
+                padding: 0 0 40px;
+                margin-top: -10px;
+            }
+
+            .hero {
+                padding: 50px 20px 44px;
+            }
+
+            .hero h1 {
+                font-size: 30px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- ====== 头部 ====== -->
+    <div class="hero">
+        <div class="avatar">👤</div>
+        <h1>您的姓名</h1>
+        <p class="subtitle">求职岗位 · 个人简介一句话</p>
+        <div class="tags">
+            <span class="tag">📧 your@email.com</span>
+            <span class="tag">📱 138-xxxx-xxxx</span>
+        </div>
+    </div>
+
+    <!-- ====== 主体内容 ====== -->
+    <div class="container">
+
+        <!-- 荣誉证书 -->
+        <div class="section">
+            <div class="section-title">
+                <span class="icon">🏆</span> 荣誉证书
+            </div>
+
+            <div class="card cert-card">
+                <img class="cert-img"
+                     src="简历介绍图片/门型框图.jpg"
+                     alt="荣誉证书"
+                     onclick="openLightbox(this.src)">
+                <div class="cert-info">
+                    <div class="cert-name">荣誉证书名称</div>
+                    <div class="cert-meta">
+                        <span>📅 2024年</span>
+                        <span>🏅 获奖等级</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 更多证书可以复制上面的 .card.cert-card 结构 -->
+        </div>
+
+        <!-- 项目经验 -->
+        <div class="section">
+            <div class="section-title">
+                <span class="icon">💼</span> 项目经验
+            </div>
+
+            <div class="card project-card">
+                <div class="project-header">
+                    <div class="project-name">📦 项目名称</div>
+                    <p class="project-desc">
+                        项目描述：简要说明项目是做什么的，解决了什么问题，有什么亮点。
+                    </p>
+                </div>
+                <div class="tech-stack">
+                    <span class="tech-tag">React</span>
+                    <span class="tech-tag">Node.js</span>
+                    <span class="tech-tag">MySQL</span>
+                </div>
+            </div>
+
+            <div class="card project-card">
+                <div class="project-header">
+                    <div class="project-name">📦 项目名称二</div>
+                    <p class="project-desc">
+                        项目描述：简要说明项目是做什么的，解决了什么问题，有什么亮点。
+                    </p>
+                </div>
+                <div class="tech-stack">
+                    <span class="tech-tag">Vue</span>
+                    <span class="tech-tag">Python</span>
+                    <span class="tech-tag">Docker</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- 技能 -->
+        <div class="section">
+            <div class="section-title">
+                <span class="icon">🛠</span> 技能栈
+            </div>
+            <div style="display:flex;flex-wrap:wrap;gap:8px;">
+                <span class="tech-tag" style="font-size:13px;padding:6px 16px;">JavaScript</span>
+                <span class="tech-tag" style="font-size:13px;padding:6px 16px;">TypeScript</span>
+                <span class="tech-tag" style="font-size:13px;padding:6px 16px;">React</span>
+                <span class="tech-tag" style="font-size:13px;padding:6px 16px;">Vue</span>
+                <span class="tech-tag" style="font-size:13px;padding:6px 16px;">Node.js</span>
+                <span class="tech-tag" style="font-size:13px;padding:6px 16px;">Python</span>
+                <span class="tech-tag" style="font-size:13px;padding:6px 16px;">Git</span>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- ====== 底部 ====== -->
+    <div class="footer">
+        扫码查看完整简历 · <a href="#">下载PDF版本</a>
+    </div>
+
+    <!-- ====== 图片放大弹窗 ====== -->
+    <div class="lightbox" id="lightbox" onclick="closeLightbox()">
+        <button class="close-btn" onclick="closeLightbox()">✕</button>
+        <img id="lightbox-img" src="" alt="证书预览" onclick="event.stopPropagation()">
+        <p class="hint">点击空白处关闭</p>
+    </div>
+
+    <script>
+        function openLightbox(src) {
+            document.getElementById('lightbox-img').src = src;
+            document.getElementById('lightbox').classList.add('show');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeLightbox() {
+            document.getElementById('lightbox').classList.remove('show');
+            document.body.style.overflow = '';
+        }
+
+        // ESC 关闭
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape') closeLightbox();
+        });
+    </script>
+
+</body>
+</html>
