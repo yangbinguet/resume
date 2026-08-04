@@ -5,7 +5,9 @@
       "Read(//c/Users/12979/Desktop/简历-工作准备/**)",
       "Bash(npx vercel *)",
       "Bash(git --version)",
-      "Bash(git config *)"
+      "Bash(git config *)",
+      "Bash(git remote *)",
+      "Bash(git push *)"
     ]
   }
 }
