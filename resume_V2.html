@@ -649,6 +649,45 @@
       </div>
     </section>
 
+    <section class="section">
+      <div class="section-head">
+        <div class="section-title">软件著作权</div>
+        <div class="section-note">核心知识产权</div>
+      </div>
+      <div class="project-list">
+        <article class="card collapsible" style="background:linear-gradient(135deg,#2e1065 0%,#6d28d9 45%,#8b5cf6 100%);color:#fff;overflow:visible;">
+          <div class="award-card" style="margin-top:0;border:0;background:none;box-shadow:none;">
+            <div class="award-icon" aria-hidden="true" style="background:rgba(255,255,255,.18);border:1px solid rgba(255,255,255,.35);border-radius:50%;">©</div>
+            <div class="award-content">
+              <div class="award-eyebrow">SOFTWARE COPYRIGHT · 软件著作权</div>
+              <div class="award-heading">
+                <span class="award-title">基于视觉的服装尺寸自动测量系统 V1.0</span>
+                <span class="award-badge">已登记</span>
+              </div>
+              <div class="award-description">基于视觉技术的服装尺寸自动测量系统</div>
+              <div style="margin-top:4px;font-size:10px;opacity:.55;">著作权人：桂林电子科技大学 · 中国版权保护中心</div>
+            </div>
+            <div class="award-money">
+              <div class="award-money-label">登记号</div>
+              <div class="award-money-value" style="font-size:18px;">2024SR0260287</div>
+              <div style="margin-top:4px;font-size:10px;opacity:.65;">2024年02月09日</div>
+            </div>
+          </div>
+
+          <div class="collapse-trigger" onclick="toggleCollapse(this)" style="display:flex;align-items:center;gap:8px;justify-content:center;padding:10px 0;font-size:12px;opacity:.7;color:#fff;border-top:1px solid rgba(255,255,255,.15);cursor:pointer;user-select:none;">
+            <svg class="arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width:16px;height:16px;"><polyline points="9 18 15 12 9 6"/></svg>
+            <span>查看登记证书</span>
+          </div>
+
+          <div class="collapse-body">
+            <div style="padding:16px 20px 20px;text-align:center;">
+              <img src='%E8%8D%A3%E8%AA%89%E8%AF%81%E4%B9%A6/software-copyrights.jpg' alt="软件著作权登记证书" style="display:block;margin:0 auto;max-width:100%;max-height:80vh;border-radius:10px;box-shadow:0 8px 30px rgba(0,0,0,.25);" onclick="event.stopPropagation();" />
+            </div>
+          </div>
+        </article>
+      </div>
+    </section>
+
     <section class="section two-col">
       <div>
         <div class="section-head"><div class="section-title">教育经历</div></div>
@@ -787,6 +826,8 @@
         const txt = label.textContent;
         if (txt.includes('获奖证书')) {
           label.textContent = item.classList.contains('open') ? '收起获奖证书' : '查看获奖证书';
+        } else if (txt.includes('登记证书')) {
+          label.textContent = item.classList.contains('open') ? '收起登记证书' : '查看登记证书';
         } else {
           label.textContent = item.classList.contains('open') ? '收起详情' : '展开详情';
         }
