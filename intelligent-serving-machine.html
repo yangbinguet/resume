@@ -1,0 +1,478 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>智能发球机 · 核心项目</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", sans-serif;
+            background: #f0f4f8;
+            color: #1e293b;
+            line-height: 1.55;
+            min-height: 100vh;
+            padding: 2rem 1rem 3rem;
+        }
+
+        .page {
+            max-width: 920px;
+            margin: 0 auto;
+        }
+
+        /* Section header */
+        .section-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-end;
+            margin-bottom: 1.25rem;
+        }
+
+        .section-title {
+            display: flex;
+            align-items: center;
+            gap: 0.7rem;
+        }
+
+        .section-title .bar {
+            width: 4px;
+            height: 22px;
+            background: #2563eb;
+            border-radius: 2px;
+        }
+
+        .section-title h1 {
+            font-size: 1.35rem;
+            font-weight: 700;
+            color: #0f172a;
+        }
+
+        .section-sub {
+            font-size: 0.88rem;
+            color: #64748b;
+        }
+
+        /* Main card */
+        .project-card {
+            background: #fff;
+            border-radius: 18px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px -8px rgba(37, 99, 235, 0.18);
+            border: 1px solid #e2e8f0;
+        }
+
+        /* Blue header */
+        .card-header {
+            background: linear-gradient(135deg, #1e3a8a 0%, #2563eb 45%, #3b82f6 100%);
+            color: #fff;
+            padding: 1.6rem 1.6rem 1.3rem;
+            position: relative;
+        }
+
+        .header-top {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            gap: 1rem;
+            margin-bottom: 0.85rem;
+        }
+
+        .header-label {
+            font-size: 0.72rem;
+            font-weight: 600;
+            letter-spacing: 0.06em;
+            opacity: 0.85;
+            text-transform: uppercase;
+        }
+
+        .status-badge {
+            background: rgba(255,255,255,0.2);
+            backdrop-filter: blur(4px);
+            font-size: 0.78rem;
+            font-weight: 600;
+            padding: 0.28rem 0.75rem;
+            border-radius: 999px;
+            white-space: nowrap;
+        }
+
+        .card-title {
+            font-size: 1.35rem;
+            font-weight: 700;
+            line-height: 1.4;
+            margin-bottom: 0.7rem;
+        }
+
+        .card-desc {
+            font-size: 0.92rem;
+            opacity: 0.92;
+            line-height: 1.6;
+            margin-bottom: 1.1rem;
+        }
+
+        .tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.45rem;
+        }
+
+        .tag {
+            background: rgba(255,255,255,0.18);
+            font-size: 0.75rem;
+            padding: 0.25rem 0.65rem;
+            border-radius: 999px;
+            font-weight: 500;
+        }
+
+        .tag.highlight {
+            background: rgba(251, 191, 36, 0.9);
+            color: #78350f;
+            font-weight: 650;
+        }
+
+        /* Toggle */
+        .toggle-bar {
+            display: flex;
+            justify-content: center;
+            padding: 0.55rem;
+            background: rgba(0,0,0,0.08);
+            cursor: pointer;
+            font-size: 0.82rem;
+            color: rgba(255,255,255,0.9);
+            user-select: none;
+            transition: background 0.2s;
+        }
+
+        .toggle-bar:hover {
+            background: rgba(0,0,0,0.12);
+        }
+
+        .toggle-bar span {
+            display: flex;
+            align-items: center;
+            gap: 0.3rem;
+        }
+
+        /* Body */
+        .card-body {
+            padding: 1.4rem 1.6rem 1.6rem;
+            display: none;
+        }
+
+        .card-body.open {
+            display: block;
+        }
+
+        .block {
+            margin-bottom: 1.4rem;
+        }
+
+        .block:last-child {
+            margin-bottom: 0;
+        }
+
+        .block-title {
+            font-size: 0.95rem;
+            font-weight: 650;
+            color: #1e40af;
+            margin-bottom: 0.75rem;
+            display: flex;
+            align-items: center;
+            gap: 0.4rem;
+        }
+
+        .duty-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 0.55rem 1.2rem;
+        }
+
+        .duty-item {
+            font-size: 0.88rem;
+            color: #334155;
+            display: flex;
+            gap: 0.45rem;
+            line-height: 1.5;
+        }
+
+        .duty-item::before {
+            content: "";
+            width: 6px;
+            height: 6px;
+            min-width: 6px;
+            background: #3b82f6;
+            border-radius: 50%;
+            margin-top: 0.45rem;
+        }
+
+        /* Video placeholder */
+        .video-block {
+            margin-bottom: 1.4rem;
+        }
+
+        .video-wrap {
+            position: relative;
+            width: 100%;
+            aspect-ratio: 16 / 9;
+            background: #0f172a;
+            border-radius: 12px;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .video-wrap video {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+
+        .video-placeholder {
+            text-align: center;
+            color: #94a3b8;
+            padding: 1.5rem;
+        }
+
+        .video-placeholder .play-icon {
+            width: 56px;
+            height: 56px;
+            border-radius: 50%;
+            background: rgba(59, 130, 246, 0.25);
+            border: 2px solid rgba(59, 130, 246, 0.6);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 0.75rem;
+            font-size: 1.4rem;
+            color: #60a5fa;
+        }
+
+        .video-placeholder p {
+            font-size: 0.88rem;
+            line-height: 1.5;
+        }
+
+        .video-placeholder code {
+            background: rgba(255,255,255,0.08);
+            padding: 0.15rem 0.4rem;
+            border-radius: 4px;
+            font-size: 0.8rem;
+        }
+
+        /* Metrics */
+        .metrics {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 0.75rem;
+        }
+
+        .metric {
+            background: #eff6ff;
+            border-radius: 12px;
+            padding: 1rem 0.8rem;
+            text-align: center;
+        }
+
+        .metric .num {
+            font-size: 1.35rem;
+            font-weight: 700;
+            color: #1d4ed8;
+            line-height: 1.2;
+        }
+
+        .metric .label {
+            font-size: 0.78rem;
+            color: #64748b;
+            margin-top: 0.25rem;
+        }
+
+        /* Highlights */
+        .highlights {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 0.7rem;
+        }
+
+        .hl-card {
+            background: #f8fafc;
+            border: 1px solid #e2e8f0;
+            border-radius: 10px;
+            padding: 0.85rem 1rem;
+        }
+
+        .hl-card h4 {
+            font-size: 0.9rem;
+            font-weight: 650;
+            color: #0f172a;
+            margin-bottom: 0.3rem;
+        }
+
+        .hl-card p {
+            font-size: 0.82rem;
+            color: #64748b;
+            line-height: 1.45;
+        }
+
+        footer {
+            text-align: center;
+            margin-top: 1.75rem;
+            font-size: 0.8rem;
+            color: #94a3b8;
+        }
+
+        @media (max-width: 640px) {
+            .duty-grid,
+            .highlights,
+            .metrics {
+                grid-template-columns: 1fr;
+            }
+            .card-title {
+                font-size: 1.15rem;
+            }
+            .header-top {
+                flex-direction: column;
+            }
+        }
+
+        @media print {
+            body { background: white; padding: 0; }
+            .card-body { display: block !important; }
+            .toggle-bar { display: none; }
+        }
+    </style>
+</head>
+<body>
+    <div class="page">
+        <div class="section-header">
+            <div class="section-title">
+                <div class="bar"></div>
+                <h1>核心项目</h1>
+            </div>
+            <div class="section-sub">本科毕业设计 · 人工智能 / 嵌入式 / 计算机视觉</div>
+        </div>
+
+        <article class="project-card">
+            <!-- 蓝色头部 -->
+            <div class="card-header">
+                <div class="header-top">
+                    <div class="header-label">GRADUATION DESIGN · INTELLIGENT SERVING MACHINE</div>
+                    <div class="status-badge">独立完成</div>
+                </div>
+
+                <h2 class="card-title">智能乒乓球发球机设计</h2>
+
+                <p class="card-desc">
+                    面向乒乓球训练场景，设计并实现一套融合人工智能的智能发球系统。以 STM32F103C8T6 为主控完成发球、摆头、送球与搅拌机构控制，结合树莓派 4B 部署目标检测模型，实时获取运动员位置并动态调整落点，支持蓝牙 / 语音控制与多种智能发球模式。
+                </p>
+
+                <div class="tags">
+                    <span class="tag highlight">本科优秀毕业设计</span>
+                    <span class="tag">2023.09 — 2024.05</span>
+                    <span class="tag">桂林电子科技大学</span>
+                    <span class="tag">STM32 / 树莓派 / YOLO</span>
+                    <span class="tag">导航工程</span>
+                </div>
+            </div>
+
+            <div class="toggle-bar" id="toggleBtn">
+                <span id="toggleText">展开详情 ▾</span>
+            </div>
+
+            <!-- 详情内容 -->
+            <div class="card-body" id="detailBody">
+                <!-- 项目演示视频（预留位置） -->
+                <div class="block video-block">
+                    <div class="block-title">项目演示</div>
+                    <div class="video-wrap">
+                        <!-- 
+                            使用方法：把下面的占位内容替换成真实 video 标签，例如：
+                            <video src="demo.mp4" controls playsinline poster="封面.jpg"></video>
+                            或嵌入 Bilibili / 腾讯视频 iframe
+                        -->
+                        <div class="video-placeholder">
+                            <div class="play-icon">▶</div>
+                            <p>视频预留位置<br>
+                            将 <code>&lt;video src="你的视频.mp4" controls&gt;</code><br>
+                            放在此处即可</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 个人职责 -->
+                <div class="block">
+                    <div class="block-title">个人职责</div>
+                    <div class="duty-grid">
+                        <div class="duty-item">完成系统总体方案与硬件架构设计，选型主控、电机驱动与通信模块。</div>
+                        <div class="duty-item">设计并实现发球、摆头、送球、搅拌四大机构驱动电路与底层固件。</div>
+                        <div class="duty-item">基于 STM32 完成多模式发球逻辑与定时器分时控制。</div>
+                        <div class="duty-item">在树莓派 4B 上部署 YOLOv5-Lite 与 RFB-Person Net，实现实时人体检测。</div>
+                        <div class="duty-item">开发蓝牙安卓 APP（Qt）与 PC 端上位机，支持模式切换与视频图传。</div>
+                        <div class="duty-item">实现跟踪发球与躲避发球等智能模式，完成整机联调与论文撰写。</div>
+                    </div>
+                </div>
+
+                <!-- 关键技术指标 -->
+                <div class="block">
+                    <div class="block-title">关键技术指标</div>
+                    <div class="metrics">
+                        <div class="metric">
+                            <div class="num">7</div>
+                            <div class="label">工作模式</div>
+                        </div>
+                        <div class="metric">
+                            <div class="num">实时</div>
+                            <div class="label">目标跟踪检测</div>
+                        </div>
+                        <div class="metric">
+                            <div class="num">双轮</div>
+                            <div class="label">摩擦发球机构</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 技术亮点 -->
+                <div class="block">
+                    <div class="block-title">技术亮点</div>
+                    <div class="highlights">
+                        <div class="hl-card">
+                            <h4>智能跟踪 / 躲避</h4>
+                            <p>树莓派实时检测运动员位置，动态控制摆头机构，实现跟踪发球与主动躲避发球。</p>
+                        </div>
+                        <div class="hl-card">
+                            <h4>多模式发球</h4>
+                            <p>支持直发、上旋、下旋、长短球、无规律、跟踪、躲避共 7 种模式，满足不同训练需求。</p>
+                        </div>
+                        <div class="hl-card">
+                            <h4>双轮摩擦 + 步进摆头</h4>
+                            <p>双直流电机协同控制转速差产生旋转，步进电机精确控制发球方向覆盖。</p>
+                        </div>
+                        <div class="hl-card">
+                            <h4>蓝牙 / 语音 + 上位机</h4>
+                            <p>支持手机 APP 与语音控制参数，PC 端通过 RTSP 图传实时查看检测画面。</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </article>
+
+        <footer>
+            核心项目展示 · 数据来源于本科毕业设计论文《智能发球机设计》
+        </footer>
+    </div>
+
+    <script>
+        const btn = document.getElementById('toggleBtn');
+        const body = document.getElementById('detailBody');
+        const text = document.getElementById('toggleText');
+        let open = false;
+
+        btn.addEventListener('click', () => {
+            open = !open;
+            body.classList.toggle('open', open);
+            text.textContent = open ? '收起详情 ▴' : '展开详情 ▾';
+        });
+    </script>
+</body>
+</html>
